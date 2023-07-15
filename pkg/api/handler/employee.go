@@ -213,7 +213,7 @@ func (u *EmployeeHandler) PostLogin(ctxt *gin.Context) {
 		return
 	}
 
-	ctxt.SetCookie("employee-cookie", token, 30*24*60, "/", "", false, true)
+	ctxt.SetCookie("employee-cookie", token, 30*24*60*60, "/", "", false, true)
 	resp := response.SuccessResponse(200, "succesfuly logged in", token)
 	ctxt.JSON(200, resp)
 }
@@ -657,13 +657,13 @@ func (u *EmployeeHandler) SalaryDetails(c *gin.Context) {
 	details, err := u.employeeUseCase.GetSalaryDetails(c, id)
 
 	if err != nil {
-		resp := response.ErrorResponse(404, "failed to get salary details", err.Error(), nil)
+		resp := response.ErrorResponse(404, "failed to get salary details, Contact Admin", err.Error(), nil)
 		c.JSON(404, resp)
 		return
 	}
 
 	if err != nil || details.Gross_salary == 0 {
-		resp := response.ErrorResponse(404, "no attendace history found", "", nil)
+		resp := response.ErrorResponse(404, "Salary detials not found", "", nil)
 		c.JSON(404, resp)
 		return
 	}

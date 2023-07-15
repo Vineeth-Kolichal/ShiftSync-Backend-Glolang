@@ -18,7 +18,7 @@ func AutomateCreditSalary() {
 	fmt.Println("automate")
 
 	automate := cron.New()
-	automate.AddFunc("0 0 0 1 *", CreditSalary)
+	automate.AddFunc("0 5 * * *", CreditSalary)
 
 	automate.Start()
 

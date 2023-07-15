@@ -14,6 +14,7 @@ var db *gorm.DB
 var dberr error
 
 func ConnectToDatbase(config config.Config) *gorm.DB {
+	println("is it working")
 	connstr := fmt.Sprintf("host=%s user=%s dbname=%s port=%s password=%s", config.Db.DbHost, config.Db.DbUser, config.Db.DbName, config.Db.DbPort, config.Db.DbPaswword)
 	db, dberr = gorm.Open(postgres.Open(connstr), &gorm.Config{})
 
